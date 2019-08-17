@@ -1,6 +1,10 @@
 import * as firebase from 'firebase';
 import config from './config'
+// Required for side-effects
+import 'firebase/firestore';
 
 firebase.initializeApp(config);
 
-export default firebase;
+const db = firebase.firestore();
+
+export default db;
