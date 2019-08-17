@@ -1,15 +1,20 @@
 import React from 'react';
-import firebase from './../db';
+import db from './../db';
 
 class Form extends React.Component {
   state = {
     text: '',
   };
 
-  writeUserData = (data) => {
-    firebase.database().ref('test').set({
-      data
-    });
+  writeUserData = (text) => {
+    // firebase.database().ref('test').set({
+    //   data
+    // });
+    let docRef = db.collection('messages').doc('alovelace');
+
+    let setAda = docRef.set({ text });
+
+    console.log('STEADA', setAda)
   }  
 
   handleChange = (e) => {
