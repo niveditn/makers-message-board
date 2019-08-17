@@ -20,14 +20,16 @@ class Form extends React.Component {
   }  
 
   handleChange = (e) => {
-    const text =  e.target.value;
+    const text =  e.target.value && e.target.value.trim();
     this.setState({ text });
   };
 
   handleSubmit = () => {
     const { text } = this.state;
     // save message in firebase
-    this.saveMessage(text);
+    if(text && text.length) {
+      this.saveMessage(text);
+    }  
   }
 
   render() {
