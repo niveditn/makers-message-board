@@ -6,6 +6,10 @@ class Form extends React.Component {
     text: '',
   };
 
+  clearInput = () => {
+    this.setState({ text: '' });
+  }
+
   async saveMessage (text) {
     try {
       const timestamp = new Date();
@@ -13,7 +17,7 @@ class Form extends React.Component {
       const result = await db.collection('messages').add({ text, timestamp })
       console.log('Document written with ID: ', result.id);
       // reset text field
-      this.setState({ text: '' });
+      this.clearInput();
     } catch (error) {
       console.error('Error adding document: ', error);
     }
@@ -31,7 +35,7 @@ class Form extends React.Component {
     if(text.length) {
       this.saveMessage(text);
     } else {
-      this.setState({ text });
+      this.clearInput();
     }
   }
 
